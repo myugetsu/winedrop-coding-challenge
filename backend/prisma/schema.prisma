@@ -1,0 +1,40 @@
+// Define SQLite as the datasource
+// Define the Prisma client generator
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model MasterWine {
+  id      Int         @id @default(autoincrement())
+  name    String
+  vintage Int
+  products WineProduct[]
+  @@map("master_wine")
+}
+
+model WineProduct {
+  id             Int             @id @default(autoincrement())
+  masterWineId   Int
+  name           String
+  price          Decimal
+  orders         CustomerOrder[]
+  masterWine    MasterWine      @relation(fields: [masterWineId], references: [id])
+  @@map("wine_product")
+}
+
+model CustomerOrder {
+  id              Int          @id @default(autoincrement())
+  wineProductId   Int
+  quantity        Int
+  totalAmount     Decimal
+  status          String
+  wineProduct     WineProduct   @relation(fields: [wineProductId], references: [id])
+  @@map("customer_order")
+}
+
+
