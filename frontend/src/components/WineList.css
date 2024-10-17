@@ -1,0 +1,22 @@
+.wine-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.wine-item {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.highlight-top {
+  background-color: #d4edda;
+  /* Green for top 10% */
+  border-color: #c3e6cb;
+}
+
+.highlight-bottom {
+  background-color: #f8d7da;
+  /* Red for bottom 10% */
+  border-color: #f5c6cb;
+}
+
